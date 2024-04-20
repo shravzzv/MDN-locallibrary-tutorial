@@ -1,0 +1,21 @@
+extends layout 
+
+block content
+  h1 Author: #{title}
+  p #{author.lifespan}
+  h2 Books
+  if books.length
+    ul
+      each book in books
+        li
+          a(href=book.url) #{book.title}
+  else 
+    p There are no books from this author.
+
+  hr
+  p
+    a(href=author.url+'/delete') Delete author
+  p
+    a(href=author.url+'/update') Update author
+
+    

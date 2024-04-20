@@ -1,8 +1,54 @@
-body {
-  padding: 50px;
-  font: 16px Inter, 'Lucida Grande', Helvetica, Arial, sans-serif;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-a {
-  color: #00b7ff;
+:root {
+  --txt-clr: black;
+  --bg-clr: white;
+  --bg-clr-sec: rgb(248, 248, 248);
+
+  @media (prefers-color-scheme: dark) {
+    --txt-clr: white;
+    --bg-clr: #121212;
+    --bg-clr-sec: #242424;
+  }
+}
+
+body {
+  color: var(--txt-clr);
+  background-color: var(--bg-clr);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+}
+
+ul:not(.sidebar-nav) {
+  li + li {
+    margin-top: 10px;
+  }
+}
+
+.sidebar-nav {
+  list-style: none;
+  background-color: var(--bg-clr-sec);
+  border-radius: 20px;
+  padding: 15px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 10px 5px;
+
+    &:hover {
+      border-color: lightgray;
+    }
+  }
 }

@@ -3,9 +3,11 @@ const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
+const mongoose = require('mongoose')
 
 const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
+const catalogRouter = require('./routes/catalog')
 
 const app = express()
 
@@ -21,6 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', indexRouter)
 app.use('/users', usersRouter)
+app.use('/catalog', catalogRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -37,5 +40,12 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500)
   res.render('error')
 })
+
+mongoose.set('strictQuery', false)
+// Wait for database to connect, logging an error if there is a problem
+main().catch((err) => console.log(err))
+async function main() {
+  await mongoose.connect(process.env.MONGODB_URI)
+}
 
 module.exports = app

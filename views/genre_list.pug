@@ -1,0 +1,13 @@
+extend layout
+
+block content
+  h1= title
+
+  if genre_list.length
+    ul
+      each val in genre_list
+        li 
+          a(href=val.url) #{val.name}
+
+  else
+    p There are no genres in this library.
